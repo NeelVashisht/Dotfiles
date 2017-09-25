@@ -1,88 +1,36 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
+# Path to oh-my-zsh installation.
   export ZSH=/home/blazing/.oh-my-zsh
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="amuse"
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="dd.mm.yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# plugins found in ~/.oh-my-zsh/plugins/*
 # Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+
 # User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias w3g='w3m google.com'
 alias fuck='rm -f'
 alias w3d='w3m duckduckgo.com'
@@ -93,21 +41,57 @@ alias cdf='cd ~/Desktop/Fun'
 alias cdg='cd ~/go'
 alias cdp='cd ~/Desktop/Fun/Py'
 
-function bcpp() {
-    if [ -z $2 ]; then
-        echo "SYNTAX: cmpl [source] [binary] [...]"
+#Building single C, C++ and Go files
+function bp() {
+    if [ -z $1 ]; then
+        echo "Usage: bp [FILE] [OPTIONS]\nBuilds single C, C++ and Go files"
+
     else
-        g++ -std=c++14 $1 -o $2 $3 $4 $5 $6 $7 $8 $9 $10
+        var=$1
+        num=${#1}
+        if [[ $var == *".cpp" ]]; then
+            let "num-=4"
+            g++ -std=c++14 $1 -o ${var:0:$num} $2 $3 $4 $5
+        elif [[ $var == *".c" ]]; then
+            let "num-=2"
+            gcc $1 -o ${var:0:$num} $2 $3 $4 $5
+        elif [[ $var == *".go" ]]; then
+            let "num-=2"
+            go build $1 $2 $3 $4 $5
+        else
+            echo "Error: Unrecognised file type"
+        fi
     fi
 }
 
-function bc() {
-    if [ -z $2 ]; then 
-        echo "Syntax: bc [source] [binary] [...]"
+#Building + running single C, C++, Python3.x files
+function rp() {
+    if [ -z $1 ]; then
+        echo "Usage: rp [FILE] [OPTIONS]\nBuilds & runs, or directly runs single C, C++, Go and Python3.X files"
     else
-        gcc $1 -o $2 $3 $4 $5 $6 $7 $8 $9 $10
+        var=$1
+        num=${#1}
+        if [[ $var == *".cpp" ]]; then
+            let "num=-4"
+            exe=${var:0:$num}
+            g++ $1 -o $exe $2 $3 $4 $5
+            ./$exe
+        elif [[ $var == *".c" ]]; then
+            let "num-=2"
+            exe=${var:0:$num}
+            gcc $1 -o $exe $2 $3 $4 $5
+            ./$exe
+        elif [[ $var == *".go" ]]; then
+            go run $1 $2 $3 $4 $5
+        elif [[ $var == *".py" ]]; then
+            python3 $var
+        else
+            echo "Error: Unrecognised file type"
+        fi
     fi
 }
+
+#Go env setup
 GOPATH=/home/blazing/go
 export GOPATH
 export PATH=$PATH:$GOPATH/bin
