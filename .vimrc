@@ -15,8 +15,6 @@ Plugin 'rust-lang/rust.vim'
 
 call vundle#end()
 
-nmap <silent> <C-a> :NERDTreeToggle<CR>
-
 filetype indent on
 
 syntax on
@@ -40,11 +38,16 @@ set smartcase
 "set hlsearch
 "set gdefault
 
-"For faster checking of small cpp programs
-map ` : <bar> exec
-            \ '!g++ ' .shellescape('%').
-            \ ' -o ' .shellescape('%:r').
-            \ ' && ./' .shellescape('%:r') <CR>
+nmap <silent> <C-a> :NERDTreeToggle<CR>
+
+"To use the functions below
+set shell=zsh\ -i
+
+"Building single C, C++ or a Go file; defined in .zshrc
+map ` : <bar> exec '!bp ' .shellescape('%') <CR>
+
+"Building+running single C, C++, Go or a Python3 file; defined in .zshrc
+map ~ : <bar> exec '!rp ' .shellescape('%') <CR>
 
 "YCM compile flag error fix
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
