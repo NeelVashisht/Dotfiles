@@ -32,19 +32,20 @@ source $ZSH/oh-my-zsh.sh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 alias w3g='w3m google.com'
-alias fuck='rm -f'
 alias w3d='w3m duckduckgo.com'
+alias fuck='rm -f'
 alias open=xdg-open
 alias la='ls -a'
 alias cdd='cd ~/Desktop'
 alias cdf='cd ~/Desktop/Fun'
 alias cdg='cd ~/go'
 alias cdp='cd ~/Desktop/Fun/Py'
+alias cdr='cd ~/Desktop/Fun/Rust'
 
-#Building single C, C++ and Go files
+#Building single c, cpp, go, rust files
 function bp() {
     if [ -z $1 ]; then
-        echo "Usage: bp [FILE] [OPTIONS]\nBuilds single C, C++ and Go files"
+        echo "Usage: bp [FILE] [OPTIONS]\nBuilds single C, C++, Go and Rust files"
 
     else
         var=$1
@@ -56,18 +57,19 @@ function bp() {
             let "num-=2"
             gcc $1 -o ${var:0:$num} $2 $3 $4 $5
         elif [[ $var == *".go" ]]; then
-            let "num-=2"
             go build $1 $2 $3 $4 $5
+        elif [[ $var == *".rs" ]]; then
+            rustc $1 $2 $3 $4 $5
         else
             echo "Error: Unrecognised file type"
         fi
     fi
 }
 
-#Building + running single C, C++, Python3.x files
+#Building + running single c, cpp, go, rust,  python3.x files
 function rp() {
     if [ -z $1 ]; then
-        echo "Usage: rp [FILE] [OPTIONS]\nBuilds & runs, or directly runs single C, C++, Go and Python3.X files"
+        echo "Usage: rp [FILE] [OPTIONS]\nBuilds & runs, or directly runs single C, C++, Go, Rust and Python3.x files"
     else
         var=$1
         num=${#1}
@@ -85,6 +87,10 @@ function rp() {
             go run $1 $2 $3 $4 $5
         elif [[ $var == *".py" ]]; then
             python3 $var
+        elif [[ $var == *".rs" ]]; then
+            let "num-=3"
+            rustc $1 $2 $3 $4 $5
+            ./${var:0:$num}
         else
             echo "Error: Unrecognised file type"
         fi
