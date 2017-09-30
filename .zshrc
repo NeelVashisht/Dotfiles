@@ -59,7 +59,8 @@ function bp() {
         elif [[ $var == *".go" ]]; then
             go build $1 $2 $3 $4 $5
         elif [[ $var == *".rs" ]]; then
-            rustc $1 $2 $3 $4 $5
+            #rustc $1 $2 $3 $4 $5
+            cargo build
         else
             echo "Error: Unrecognised file type"
         fi
@@ -76,7 +77,7 @@ function rp() {
         if [[ $var == *".cpp" ]]; then
             let "num=-4"
             exe=${var:0:$num}
-            g++ $1 -o $exe $2 $3 $4 $5
+            g++ -std=c++14 $1 -o $exe $2 $3 $4 $5
             ./$exe
         elif [[ $var == *".c" ]]; then
             let "num-=2"
@@ -89,8 +90,9 @@ function rp() {
             python3 $var
         elif [[ $var == *".rs" ]]; then
             let "num-=3"
-            rustc $1 $2 $3 $4 $5
-            ./${var:0:$num}
+            #rustc $1 $2 $3 $4 $5
+            #./${var:0:$num}
+            cargo run $1 $2 $3 $4 $5
         else
             echo "Error: Unrecognised file type"
         fi
