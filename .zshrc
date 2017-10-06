@@ -35,6 +35,7 @@ alias w3g='w3m google.com'
 alias w3d='w3m duckduckgo.com'
 alias fuck='rm -f'
 alias open=xdg-open
+alias gtop='LANG=en_US.utf8 TERM=xterm-256color gtop'
 alias la='ls -a'
 alias cdd='cd ~/Desktop'
 alias cdf='cd ~/Desktop/Fun'
