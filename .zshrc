@@ -101,6 +101,4 @@ function rp() {
 }
 
 #Go env setup
-GOPATH=/home/blazing/go
-export GOPATH
-export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:/usr/local/go/bin
