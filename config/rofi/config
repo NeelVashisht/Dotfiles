@@ -1,0 +1,27 @@
+! General
+rofi.fake-transparency: true
+rofi.hide-scrollbar: true
+rofi.bw: 1
+rofi.eh: 1
+rofi.opacity: 0
+rofi.font: Ubuntu 18
+rofi.show-icons: true
+
+! Layout 
+rofi.width: 40
+rofi.column: 4
+rofi.lines: 5
+rofi.line-margin: 25
+rofi.padding: 75
+! rofi.sidebar-mode: true
+!rofi.fullscreen: true
+rofi.color-enabled: true
+
+rofi.color-normal: argb:00252936, #ffffff, argb:00252936, argb:009575cd, #ffc000
+rofi.color-active: argb:00252936, #252936, argb:00252936, argb:009575cd, #ff95cd
+rofi.color-urgent: argb:00252936, #ff0000, argb:00252936, argb:00252936, #ff0000
+
+rofi.color-window: argb:cc252936,  #9575cd, argb:ffffffff
+rofi.separator-style: none
+
+
