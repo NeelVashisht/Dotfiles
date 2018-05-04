@@ -16,7 +16,7 @@ Plugin 'sjl/badwolf'
 
 Plugin 'airblade/vim-gitgutter'
 
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 
 Plugin 'vim-syntastic/syntastic'
 

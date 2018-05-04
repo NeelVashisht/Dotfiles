@@ -75,10 +75,10 @@ set $work3 "3: "
 set $work4 "4: *"
 set $work5 "5: "
 set $work6 "6: "
-set $work7 "7: "
+set $work7 "7: "
 set $work8 "8: "
 set $work9 "9: "
-set $work10 "10: "
+set $work10 "10: "
 
 # switch to workspace
 bindsym $mod+1 workspace $work1
@@ -170,7 +170,7 @@ bindsym XF86MonBrightnessUp exec $HOME/Fun/exec/light/light -A 5 # increase scre
 bindsym XF86MonBrightnessDown exec $HOME/Fun/exec/light/light -U 5 # decrease screen brightness
 
 # lock screen - i3lock
-bindsym $mod+Shift+x exec $HOME/Dotfiles/scripts/lock.sh
+bindsym $mod+Shift+x exec $HOME/Fun/scripts/lock.sh
 
 # screenshot
 bindsym $mod+p exec gnome-screenshot -i
@@ -199,7 +199,7 @@ bindsym --release button2 kill
 bindsym button3 floating toggle
 
 # ion login
-#bindsym $mod+Shift+i exec sh $HOME/Fun/scripts/ion.sh <username> <pw>
+bindsym $mod+Shift+i exec $HOME/Fun/scripts/ion.sh
 
 # connecting a wifi
 bindsym $mod+c exec $HOME/Fun/scripts/wifi.sh
@@ -216,9 +216,6 @@ for_window [title="Floating"] floating enable
 
 # ---
 
-## torrents
-# exec transmission-gtk
-
 # well-wisher
 exec --no-startup-id $HOME/Fun/scripts/ww.sh
 
@@ -226,7 +223,10 @@ exec --no-startup-id $HOME/Fun/scripts/ww.sh
 exec --no-startup-id feh --bg-scale ~/Pictures/backyard-arizona.jpg
 
 # translucent terminal
-exec_always --no-startup-id compton #--config ~/.config/compton.conf -b
+exec_always --no-startup-id compton
+
+# dropbox
+exec ~/.dropbox-dist/dropboxd
 
 # -----
 

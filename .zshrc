@@ -13,7 +13,7 @@ HIST_STAMPS="dd.mm.yyyy"
 
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-plugins=(git)
+#plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -33,6 +33,7 @@ alias cdp="cd $FUN/py"
 alias cdr="cd $FUN/rust"
 alias cdcp="cd $FUN/cpp"
 alias ngrok="$FUN/exec/ngrok"
+alias dbx="$FUN/exec/dbxcli"
 alias py=python
 alias py3=python3
 alias vi=vim
