@@ -39,7 +39,6 @@ alias py3=python3
 alias vi=vim
 alias vr="vim -M"
 
-
 # Go env setup
 export PATH=$PATH:/usr/local/go/bin
 
@@ -49,3 +48,23 @@ export PATH=$PATH:/usr/local/go/bin
 # didn"t work somehow, so
 #export PATH="$HOME/.cargo/bin:$PATH"
 
+function screen_record() {
+    output=""
+    if [ -z $1 ]; then
+        output="$(date +%Y-%m-%d-%H-%M).mkv"
+    else
+        output="$1"
+    fi
+    # ffmpeg -f x11grab -s 1920x1080 -i :0.0 $output
+    ffmpeg -f x11grab -s 1920x1080 -i :0.0 -f alsa -i default $output
+}
+
+function video_record() {
+    output=""
+    if [ -z $1 ]; then
+        output="$(date +%Y-%m-%d-%H-%M).mkv"
+    else
+        output="$1"
+    fi
+    ffmpeg -i /dev/video0 $output
+}

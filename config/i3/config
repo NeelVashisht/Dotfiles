@@ -157,8 +157,8 @@ exec_always --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScr
 
 
 # pulseaudio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -176,19 +176,18 @@ bindsym $mod+Shift+x exec $HOME/Fun/scripts/lock.sh
 bindsym $mod+p exec gnome-screenshot -i
 
 # pulseaudio and firefox bs
-bindsym $mod+Shift+p exec "pulseaudio --start --exit-idle-time=-1; notify-send 'Restart firefox'"
+# bindsym $mod+Shift+p exec "pulseaudio --start --exit-idle-time=-1; notify-send 'Restart firefox'"
 
 # firefox
 bindsym $mod+b exec firefox
 bindsym $mod+Shift+b exec firefox --private-window
 
 # rofi
-#bindsym $mod+q exec rofi -matching fuzzy -show drun
 bindsym $mod+q exec rofi -show drun
 
-# nautilus forever
+# nautilus
 bindsym $mod+n exec "nautilus --no-desktop"
-# but ranger seems better so..
+# ranger
 bindsym $mod+Shift+n exec "gnome-terminal -t ranger -- ranger"
 
 # htop
@@ -204,6 +203,9 @@ bindsym $mod+Shift+i exec $HOME/Fun/scripts/ion.sh
 # connecting a wifi
 bindsym $mod+c exec $HOME/Fun/scripts/wifi.sh
 
+# YouTube Play
+bindsym $mod+y exec $HOME/Fun/scripts/ytp
+bindsym $mod+Shift+y exec $HOME/Fun/scripts/ytd
 # ---
 
 # window specifics
@@ -220,7 +222,7 @@ for_window [title="Floating"] floating enable
 exec --no-startup-id $HOME/Fun/scripts/ww.sh
 
 # wallpaper
-exec --no-startup-id feh --bg-scale ~/Pictures/backyard-arizona.jpg
+exec --no-startup-id feh --bg-scale ~/Pictures/spacex.jpg
 
 # translucent terminal
 exec_always --no-startup-id compton
@@ -228,6 +230,7 @@ exec_always --no-startup-id compton
 # dropbox
 exec ~/.dropbox-dist/dropboxd
 
-# -----
+exec $HOME/Fun/scripts/bat.sh
 
-# for defaults, re-run i3-config-wizard(1).
+# It's really irritating
+exec_always "pulseaudio --start --exit-idle-time=-1"
