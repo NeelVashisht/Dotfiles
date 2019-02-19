@@ -24,4 +24,4 @@ rofi.color-urgent: argb:00252936, #ff0000, argb:00252936, argb:00252936, #ff0000
 rofi.color-window: argb:cc252936,  #9575cd, argb:ffffffff
 rofi.separator-style: none
 
-
+!rofi.theme: ~/.cache/wal/colors-rofi-dark.rasi

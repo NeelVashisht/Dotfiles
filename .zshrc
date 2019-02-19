@@ -35,18 +35,15 @@ alias cdcp="cd $FUN/cpp"
 alias ngrok="$FUN/exec/ngrok"
 alias dbx="$FUN/exec/dbxcli"
 alias py=python
+alias venv2="source ~/Desktop/venv/venv2/bin/activate"
 alias py3=python3
+alias venv3="source ~/Desktop/venv/venv3/bin/activate"
 alias vi=vim
 alias vr="vim -M"
-
-# Go env setup
-export PATH=$PATH:/usr/local/go/bin
+alias lua=lua5.3
 
 # autojump
 . /usr/share/autojump/autojump.sh
-
-# didn"t work somehow, so
-#export PATH="$HOME/.cargo/bin:$PATH"
 
 function screen_record() {
     output=""
